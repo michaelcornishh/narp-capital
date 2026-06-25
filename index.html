@@ -803,9 +803,9 @@
         /* ── RESPONSIVE: mobile ───────────────────────────────────────────── */
         @media (max-width: 700px) {
 
-            /* Nav: hide middle links, just wordmark + CTA */
+            /* Nav: hide middle links, keep Leadership + CTA */
             nav { padding: 5px 5px 5px 18px; }
-            .nav-links a:not(.nav-cta) { display: none; }
+            .nav-links a:not(.nav-cta):not(.nav-keep) { display: none; }
 
             /* Hero */
             .hero-content { bottom: 48px; left: 24px; right: 24px; }
@@ -879,7 +879,7 @@
         <a href="#portfolio">Portfolio</a>
         <a href="#approach">Approach</a>
         <a href="#philosophy">Philosophy</a>
-        <a href="team.html">Leadership</a>
+        <a href="team.html" class="nav-keep">Leadership</a>
         <a href="#contact" class="nav-cta">Connect &rarr;</a>
     </div>
 </nav>
