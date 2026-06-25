@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narp Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200;0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:    #141414;
+            --text:   #484848;
+            --dim:    #909090;
+            --rule:   #e4e4e0;
+            --bg:     #f9f9f7;
+            --white:  #ffffff;
+            --dark:   #191920;
+            --accent: #0074b0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--ink);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ─────────────────────────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            background: var(--dark);
+            border-radius: 100px;
+            padding: 6px 6px 6px 22px;
+            white-space: nowrap;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.22);
+        }
+
+        .nav-wordmark {
+            font-family: 'Source Serif 4', serif;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            padding-right: 22px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            margin-right: 6px;
+        }
+
+        .nav-links { display: flex; align-items: center; }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.52);
+            text-decoration: none;
+            padding: 7px 14px;
+            border-radius: 100px;
+            transition: color 0.12s;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-links a:hover { color: rgba(255,255,255,0.9); }
+
+        .nav-cta {
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            color: var(--dark) !important;
+            background: white;
+            padding: 7px 18px !important;
+            border-radius: 100px;
+            letter-spacing: 0.04em !important;
+        }
+
+        .nav-cta:hover { background: #ebebeb !important; color: var(--dark) !important; }
+
+        /* ── HERO ────────────────────────────────────────────────────────── */
+        .hero-scroll-container {
+            position: relative;
+            height: 450vh;
+        }
+
+        .hero {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: #0c0a09;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.52) 100%),
+                linear-gradient(to right, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 65%);
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 68px;
+            left: clamp(28px, 5vw, 72px);
+            right: clamp(28px, 5vw, 72px);
+            z-index: 2;
+        }
+
+        .hero-headline {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(40px, 5.5vw, 76px);
+            font-weight: 300;
+            line-height: 1.06;
+            letter-spacing: -0.025em;
+            color: white;
+            max-width: 700px;
+            margin-bottom: 24px;
+        }
+
+        .hero-sub {
+            font-size: 15px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.66);
+            max-width: 400px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .hero-cta {
+            font-size: 13px;
+            color: rgba(255,255,255,0.78);
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            border-bottom: 1px solid rgba(255,255,255,0.36);
+            padding-bottom: 2px;
+            display: inline-block;
+            transition: color 0.14s, border-color 0.14s;
+        }
+
+        .hero-cta:hover { color: white; border-color: rgba(255,255,255,0.8); }
+
+        /* ── NUMBERS ─────────────────────────────────────────────────────── */
+        .numbers {
+            background: var(--white);
+            padding: 88px clamp(28px, 6vw, 80px);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .numbers-row {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .num-cell {
+            padding-right: 40px;
+        }
+
+        .num-cell + .num-cell {
+            padding-left: 40px;
+            border-left: 1px solid var(--rule);
+        }
+
+        .num-val {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(38px, 4.5vw, 58px);
+            font-weight: 200;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .num-lbl {
+            font-size: 12px;
+            color: var(--dim);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            line-height: 1.4;
+        }
+
+        /* ── ABOUT ───────────────────────────────────────────────────────── */
+        .about {
+            background: var(--bg);
+            padding: 128px clamp(28px, 6vw, 80px);
+        }
+
+        .about-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 100px;
+            align-items: start;
+        }
+
+        .about-statement {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 300;
+            line-height: 1.14;
+            letter-spacing: -0.025em;
+            color: var(--ink);
+        }
+
+        .about-aside { padding-top: 8px; }
+
+        .about-aside p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+
+        .about-aside p:last-of-type { margin-bottom: 28px; }
+
+        .link-arrow {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            border-bottom: 1px solid var(--ink);
+            padding-bottom: 1px;
+            display: inline-block;
+            transition: opacity 0.14s;
+        }
+
+        .link-arrow:hover { opacity: 0.45; }
+
+        /* ── REAL ESTATE ─────────────────────────────────────────────────── */
+        .realestate {
+            background: var(--white);
+            border-top: 1px solid var(--rule);
+        }
+
+        .section-header {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 80px clamp(28px, 6vw, 80px) 64px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .section-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(26px, 3vw, 38px);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+        }
+
+        .section-aside {
+            font-size: 12px;
+            color: var(--dim);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .project-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--rule);
+        }
+
+        .project-row:last-child { border-bottom: 1px solid var(--rule); }
+
+        .project-img-cell {
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+        }
+
+        .project-img-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-row:hover .project-img-cell img { transform: scale(1.04); }
+
+        .project-text-cell {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 52px clamp(28px, 4vw, 60px);
+        }
+
+        .project-row:nth-child(odd) .project-img-cell { order: 1; }
+        .project-row:nth-child(odd) .project-text-cell { order: 2; }
+        .project-row:nth-child(even) .project-img-cell { order: 2; border-left: 1px solid var(--rule); }
+        .project-row:nth-child(even) .project-text-cell { order: 1; }
+
+        .proj-index {
+            font-family: 'Source Serif 4', serif;
+            font-size: 72px;
+            font-weight: 200;
+            color: var(--rule);
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        .proj-location {
+            font-size: 11px;
+            color: var(--dim);
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .proj-name {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(22px, 2.2vw, 28px);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            line-height: 1.22;
+            margin-bottom: 14px;
+        }
+
+        .proj-desc {
+            font-size: 14px;
+            line-height: 1.72;
+            color: var(--text);
+            max-width: 320px;
+        }
+
+        /* ── APPROACH ────────────────────────────────────────────────────── */
+        .approach {
+            background: var(--bg);
+            padding: 120px clamp(28px, 6vw, 80px);
+            border-top: 1px solid var(--rule);
+        }
+
+        .approach-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 100px;
+            align-items: start;
+        }
+
+        .approach-anchor {
+            position: sticky;
+            top: 96px;
+        }
+
+        .approach-heading {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(24px, 2.8vw, 36px);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            line-height: 1.22;
+            color: var(--ink);
+        }
+
+        .approach-list { }
+
+        .approach-item {
+            padding: 32px 0;
+            border-top: 1px solid var(--rule);
+        }
+
+        .approach-item:last-child { border-bottom: 1px solid var(--rule); }
+
+        .approach-item-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            margin-bottom: 9px;
+        }
+
+        .approach-item-body {
+            font-size: 14px;
+            line-height: 1.76;
+            color: var(--text);
+            max-width: 540px;
+        }
+
+        /* ── PRIVATE EQUITY ──────────────────────────────────────────────── */
+        .pe {
+            border-top: 1px solid var(--rule);
+            background: var(--white);
+        }
+
+        .pe-lead {
+            padding: 120px clamp(28px, 6vw, 80px) 80px;
+        }
+
+        .pe-lead-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 100px;
+            align-items: start;
+        }
+
+        .pe-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 300;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            color: var(--ink);
+        }
+
+        .pe-lead-body p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .pe-criteria {
+            background: #f2f2ef;
+            padding: 72px clamp(28px, 6vw, 80px);
+            border-top: 1px solid var(--rule);
+        }
+
+        .pe-criteria-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 72px;
+        }
+
+        .pe-block-label {
+            font-size: 11px;
+            color: var(--dim);
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            padding-top: 3px;
+        }
+
+        .pe-criteria-list {
+            list-style: none;
+        }
+
+        .pe-criteria-list li {
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--text);
+            padding: 14px 0 14px 22px;
+            border-bottom: 1px solid var(--rule);
+            position: relative;
+        }
+
+        .pe-criteria-list li:first-child { border-top: 1px solid var(--rule); }
+
+        .pe-criteria-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--dim);
+            font-size: 13px;
+        }
+
+        .pe-sectors {
+            padding: 72px clamp(28px, 6vw, 80px);
+            border-top: 1px solid var(--rule);
+        }
+
+        .pe-sectors-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+        }
+
+        .pe-sectors-label {
+            font-size: 11px;
+            color: var(--dim);
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            margin-bottom: 44px;
+        }
+
+        .pe-sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px;
+        }
+
+        .pe-sector-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 7px;
+            letter-spacing: -0.01em;
+        }
+
+        .pe-sector-body {
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--text);
+        }
+
+        .pe-conviction {
+            background: var(--dark);
+            padding: 96px clamp(28px, 6vw, 80px);
+            border-top: 1px solid var(--rule);
+        }
+
+        .pe-conviction-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 88px;
+            align-items: center;
+        }
+
+        .pe-conviction-heading {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(24px, 3vw, 38px);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: white;
+            line-height: 1.22;
+        }
+
+        .pe-conviction-body p {
+            font-size: 15px;
+            line-height: 1.78;
+            color: rgba(255,255,255,0.46);
+            margin-bottom: 14px;
+        }
+
+        .pe-conviction-body p:last-child { margin-bottom: 0; }
+
+        .pe-portfolio {
+            background: #f2f2ef;
+            padding: 72px clamp(28px, 6vw, 80px);
+            border-top: 1px solid var(--rule);
+        }
+
+        .pe-portfolio-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 72px;
+        }
+
+        .pe-portfolio-note {
+            font-size: 11px;
+            color: var(--dim);
+            font-style: italic;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .pe-portfolio-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .pe-portfolio-list li {
+            font-size: 14px;
+            color: var(--text);
+            padding: 13px 20px 13px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .pe-portfolio-list li:nth-child(1),
+        .pe-portfolio-list li:nth-child(2) { border-top: 1px solid var(--rule); }
+
+        .pe-closing {
+            padding: 72px clamp(28px, 6vw, 80px);
+            border-top: 1px solid var(--rule);
+        }
+
+        .pe-closing p {
+            max-width: 640px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        /* ── PHILOSOPHY ──────────────────────────────────────────────────── */
+        .philosophy {
+            background: var(--bg);
+            padding: 120px clamp(28px, 6vw, 80px);
+            border-top: 1px solid var(--rule);
+        }
+
+        .philosophy-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 100px;
+        }
+
+        .philosophy-anchor {
+            position: sticky;
+            top: 96px;
+        }
+
+        .philosophy-anchor-label {
+            font-size: 11px;
+            color: var(--dim);
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .philosophy-anchor-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(22px, 2.4vw, 30px);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            line-height: 1.25;
+        }
+
+        .philosophy-anchor-sub {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.65;
+            margin-top: 16px;
+        }
+
+        .philosophy-para {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text);
+            padding: 28px 0;
+            border-top: 1px solid var(--rule);
+        }
+
+        .philosophy-para:last-child { border-bottom: 1px solid var(--rule); }
+
+        .philosophy-para strong {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .inline-link {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        /* ── QUOTE ───────────────────────────────────────────────────────── */
+        .quote-band {
+            background: var(--dark);
+            padding: 120px clamp(28px, 6vw, 80px);
+        }
+
+        .quote-band blockquote {
+            max-width: 860px;
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(22px, 3.2vw, 40px);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.44;
+            letter-spacing: -0.015em;
+            color: rgba(255,255,255,0.78);
+        }
+
+        /* ── CONTACT ─────────────────────────────────────────────────────── */
+        .contact {
+            background: var(--bg);
+            padding: 120px clamp(28px, 6vw, 80px);
+            border-top: 1px solid var(--rule);
+        }
+
+        .contact-inner { max-width: 1160px; margin: 0 auto; }
+
+        .contact-heading {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(34px, 5vw, 66px);
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+            line-height: 1.06;
+            margin-bottom: 60px;
+        }
+
+        .contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            border-top: 1px solid var(--rule);
+            padding-top: 44px;
+        }
+
+        .contact-desc {
+            font-size: 15px;
+            line-height: 1.76;
+            color: var(--text);
+            max-width: 380px;
+        }
+
+        .contact-email {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(18px, 2.2vw, 26px);
+            font-weight: 300;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+            border-bottom: 1px solid var(--ink);
+            padding-bottom: 2px;
+            display: inline-block;
+            transition: opacity 0.14s;
+        }
+
+        .contact-email:hover { opacity: 0.42; }
+
+        .contact-location {
+            font-size: 12px;
+            color: var(--dim);
+            margin-top: 14px;
+        }
+
+        /* ── FOOTER ──────────────────────────────────────────────────────── */
+        footer {
+            background: #0e0e14;
+            padding: 36px clamp(28px, 6vw, 80px);
+        }
+
+        .footer-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-copy { font-size: 12px; color: rgba(255,255,255,0.22); }
+
+        .footer-links { display: flex; gap: 20px; }
+
+        .footer-links a {
+            font-size: 12px;
+            color: rgba(255,255,255,0.28);
+            text-decoration: none;
+            transition: color 0.12s;
+        }
+
+        .footer-links a:hover { color: rgba(255,255,255,0.65); }
+
+        /* ── RESPONSIVE ──────────────────────────────────────────────────── */
+        @media (max-width: 960px) {
+            .numbers-row { grid-template-columns: 1fr 1fr; }
+            .num-cell + .num-cell:nth-child(3) { border-left: none; padding-left: 0; }
+            .about-inner { grid-template-columns: 1fr; gap: 48px; }
+            .section-header { flex-direction: column; gap: 6px; }
+            .project-row { grid-template-columns: 1fr; }
+            .project-row:nth-child(even) .project-img-cell { order: 0; border-left: none; border-top: 1px solid var(--rule); }
+            .project-row:nth-child(odd) .project-img-cell { order: 0; }
+            .project-text-cell { order: 1 !important; }
+            .project-img-cell { aspect-ratio: 16 / 9; }
+            .approach-inner { grid-template-columns: 1fr; gap: 48px; }
+            .approach-anchor { position: static; }
+            .pe-lead-inner { grid-template-columns: 1fr; gap: 44px; }
+            .pe-criteria-inner { grid-template-columns: 1fr; gap: 28px; }
+            .pe-sectors-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .pe-conviction-inner { grid-template-columns: 1fr; gap: 44px; }
+            .pe-portfolio-inner { grid-template-columns: 1fr; gap: 28px; }
+            .pe-portfolio-list { grid-template-columns: 1fr; }
+            .pe-portfolio-list li:nth-child(2) { border-top: none; }
+            .philosophy-inner { grid-template-columns: 1fr; gap: 48px; }
+            .philosophy-anchor { position: static; }
+            .contact-row { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 600px) {
+            .num-cell + .num-cell { border-left: none; padding-left: 0; }
+            .num-cell:nth-child(3),
+            .num-cell:nth-child(4) { border-top: 1px solid var(--rule); padding-top: 40px; margin-top: 40px; }
+            .pe-sectors-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#home" class="nav-wordmark">Narp Capital</a>
+    <div class="nav-links">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#approach">Approach</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="team.html">Leadership</a>
+        <a href="#contact" class="nav-cta">Connect &rarr;</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-scroll-container" id="home">
+    <section class="hero">
+        <video class="hero-video-bg" muted playsinline preload="auto">
+            <source src="hero-loop.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-headline">Real assets.<br>Long-term capital.</h1>
+            <p class="hero-sub">We develop premium residential properties in Toronto and invest in enduring private businesses.</p>
+            <a href="#portfolio" class="hero-cta">View our portfolio</a>
+        </div>
+    </section>
+</div>
+
+<!-- NUMBERS -->
+<section class="numbers">
+    <div class="numbers-row">
+        <div class="num-cell">
+            <div class="num-val">$1.4B</div>
+            <div class="num-lbl">Development value</div>
+        </div>
+        <div class="num-cell">
+            <div class="num-val">12+</div>
+            <div class="num-lbl">Completed developments</div>
+        </div>
+        <div class="num-cell">
+            <div class="num-val">2.8M</div>
+            <div class="num-lbl">Sq ft delivered</div>
+        </div>
+        <div class="num-cell">
+            <div class="num-val">15</div>
+            <div class="num-lbl">Years in Toronto</div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+    <div class="about-inner">
+        <div>
+            <h2 class="about-statement">We build properties that hold their value—and invest in businesses built to do the same.</h2>
+        </div>
+        <div class="about-aside">
+            <p>Narp Capital operates across two disciplines: premium residential real estate in Toronto's most established neighbourhoods, and private equity investments in enduring lower middle market businesses.</p>
+            <p>We are patient with capital. Every decision—whether acquiring a development site in Yorkville or backing a founder through a management transition—reflects the same conviction: build for the long term, and the returns follow.</p>
+            <a href="#contact" class="link-arrow">Work with us &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- REAL ESTATE -->
+<section class="realestate" id="portfolio">
+    <div class="section-header">
+        <h2 class="section-title">Real Estate</h2>
+        <span class="section-aside">Toronto, Ontario</span>
+    </div>
+
+    <div class="project-row">
+        <div class="project-img-cell">
+            <img src="yorkville.png" alt="Yorkville Residences">
+        </div>
+        <div class="project-text-cell">
+            <div class="proj-index">01</div>
+            <div>
+                <div class="proj-location">Yorkville &middot; Toronto</div>
+                <h3 class="proj-name">Yorkville Residences</h3>
+                <p class="proj-desc">Private residences in Toronto's most established neighbourhood. A limited collection designed for those who expect the building to outlast the decade.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-row">
+        <div class="project-img-cell">
+            <img src="harbourpoint.png" alt="Harbour Point">
+        </div>
+        <div class="project-text-cell">
+            <div class="proj-index">02</div>
+            <div>
+                <div class="proj-location">Waterfront &middot; Toronto</div>
+                <h3 class="proj-name">Harbour Point</h3>
+                <p class="proj-desc">Residential development on Toronto's southern waterfront. Designed around the view, not around the marketing.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-row">
+        <div class="project-img-cell">
+            <img src="annex.png" alt="The Annex Collection">
+        </div>
+        <div class="project-text-cell">
+            <div class="proj-index">03</div>
+            <div>
+                <div class="proj-location">The Annex &middot; Toronto</div>
+                <h3 class="proj-name">The Annex Collection</h3>
+                <p class="proj-desc">Boutique residences in one of Toronto's oldest and most architecturally significant neighbourhoods. Scale and proportion over square footage.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- APPROACH -->
+<section class="approach" id="approach">
+    <div class="approach-inner">
+        <div class="approach-anchor">
+            <h2 class="approach-heading">How we approach every project.</h2>
+        </div>
+        <div class="approach-list">
+            <div class="approach-item">
+                <div class="approach-item-title">Site selection comes first.</div>
+                <p class="approach-item-body">We spend more time on this than any other phase. Neighbourhood character, planning policy, long-term infrastructure, and demographic fundamentals all inform where we choose to build—long before architects are engaged.</p>
+            </div>
+            <div class="approach-item">
+                <div class="approach-item-title">Architecture is not decoration.</div>
+                <p class="approach-item-body">We work with architects who understand that the best buildings in any city earn their place through proportion, restraint, and material honesty. We do not commission buildings designed to photograph well and age poorly.</p>
+            </div>
+            <div class="approach-item">
+                <div class="approach-item-title">We invest alongside every project.</div>
+                <p class="approach-item-body">Our alignment with investors and purchasers is not contractual—it's structural. We commit our own capital to every development, which means every decision is made with the seriousness of someone who will live with the outcome.</p>
+            </div>
+            <div class="approach-item">
+                <div class="approach-item-title">Permanence over yield.</div>
+                <p class="approach-item-body">We do not optimize for the IRR on the exit. We build properties that hold their value across cycles because they were built properly in the first place. The return is a consequence of the quality, not the driver of it.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRIVATE EQUITY -->
+<section class="pe" id="private-equity">
+
+    <div class="pe-lead">
+        <div class="pe-lead-inner">
+            <h2 class="pe-title">We invest in enduring private businesses.</h2>
+            <div class="pe-lead-body">
+                <p>Narp Capital invests alongside exceptional founders, operators, and management teams. Our focus is on lower middle market and middle market businesses where long-term capital, operational discipline, and strategic support create durable value.</p>
+                <p>We are highly selective. Rather than broad diversification, we concentrate on a small number of high-conviction investments where we can be a meaningful long-term partner—not a passive cheque.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="pe-criteria">
+        <div class="pe-criteria-inner">
+            <div class="pe-block-label">What we look for</div>
+            <ul class="pe-criteria-list">
+                <li>Market-leading positions in attractive, structurally sound industries</li>
+                <li>Strong, recurring cash flows and resilient business models</li>
+                <li>Exceptional management teams with meaningful equity alignment</li>
+                <li>Clear paths to operational improvement and scalable growth</li>
+                <li>Sustainable competitive advantages and defensible market positions</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pe-sectors">
+        <div class="pe-sectors-inner">
+            <div class="pe-sectors-label">Sectors of focus</div>
+            <div class="pe-sectors-grid">
+                <div>
+                    <div class="pe-sector-title">Business Services</div>
+                    <p class="pe-sector-body">Essential providers with recurring revenue and defensible client relationships.</p>
+                </div>
+                <div>
+                    <div class="pe-sector-title">Industrial &amp; Manufacturing</div>
+                    <p class="pe-sector-body">Specialized manufacturers benefiting from structural, long-cycle demand.</p>
+                </div>
+                <div>
+                    <div class="pe-sector-title">Technology &amp; Software</div>
+                    <p class="pe-sector-body">Mission-critical software, vertical SaaS, and AI-enabled infrastructure.</p>
+                </div>
+                <div>
+                    <div class="pe-sector-title">Financial Services</div>
+                    <p class="pe-sector-body">Capital markets, insurance, lending, and wealth management infrastructure.</p>
+                </div>
+                <div>
+                    <div class="pe-sector-title">Healthcare Services</div>
+                    <p class="pe-sector-body">Provider networks, outsourced services, and healthcare infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pe-conviction">
+        <div class="pe-conviction-inner">
+            <h3 class="pe-conviction-heading">The greatest value is created through patient ownership.</h3>
+            <div class="pe-conviction-body">
+                <p>We combine long-term capital with operational expertise, financial discipline, and a network built over fifteen years. Our objective is to build stronger companies—not to engineer an exit.</p>
+                <p>Whether partnering with a founder at a transition point, a family business pursuing growth, or a management team taking the next step—we bring conviction, capital, and a genuine commitment to the outcome.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="pe-portfolio">
+        <div class="pe-portfolio-inner">
+            <div>
+                <div class="pe-block-label">Representative portfolio</div>
+                <p class="pe-portfolio-note">Illustrative. Not a disclosure.</p>
+            </div>
+            <ul class="pe-portfolio-list">
+                <li>Enterprise software platforms</li>
+                <li>Business services and outsourcing</li>
+                <li>Industrial technology manufacturers</li>
+                <li>Healthcare services providers</li>
+                <li>Financial infrastructure businesses</li>
+                <li>Logistics and supply chain companies</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pe-closing">
+        <p>Whether partnering with a founder at a transition point, a family business pursuing growth, or a management team taking the next stage—Narp Capital brings long-term capital, disciplined underwriting, and a genuine commitment to building something that lasts.</p>
+    </div>
+
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+    <div class="philosophy-inner">
+        <div class="philosophy-anchor">
+            <div class="philosophy-anchor-label">Investment philosophy</div>
+            <h2 class="philosophy-anchor-title">Investing in enduring locations.</h2>
+            <p class="philosophy-anchor-sub">Toronto is one of North America's most structurally sound real estate markets. Our strategy is built around that conviction.</p>
+        </div>
+        <div>
+            <p class="philosophy-para"><strong>We focus on neighbourhoods, not postcodes.</strong> Our acquisitions are concentrated in areas supported by demographic growth, transit investment, and decades of established demand—not emerging areas where the thesis is still speculative.</p>
+            <p class="philosophy-para"><strong>Site selection is our most consequential decision.</strong> Understanding a neighbourhood, its planning context, and the structural forces shaping it takes months of work—not a market survey. We spend more time here than anywhere else.</p>
+            <p class="philosophy-para"><strong>We build for the next owner, not the next cycle.</strong> Every property we develop carries our name for decades. That accountability shapes every material specification, every structural decision, and every architect we work with.</p>
+            <p class="philosophy-para"><strong>Restraint is the highest form of quality.</strong> The best buildings in any city are not the ones that <a href="#contact" class="inline-link">demand your attention</a>—they are the ones that simply belong. We design for that.</p>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-band">
+    <blockquote>"The buildings that endure are never the ones that followed a trend—they are the ones that had the discipline to ignore one."</blockquote>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="contact-inner">
+        <h2 class="contact-heading">Let's build something that lasts.</h2>
+        <div class="contact-row">
+            <p class="contact-desc">Whether you are considering an investment, exploring a development partnership, or interested in our upcoming projects—we welcome the conversation.</p>
+            <div>
+                <a href="mailto:info@narpcapital.ca" class="contact-email">info@narpcapital.ca</a>
+                <div class="contact-location">Toronto, Ontario</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <span class="footer-copy">&copy; 2026 Narp Capital. All rights reserved.</span>
+        <div class="footer-links">
+            <a href="team.html">Leadership</a>
+            <a href="#philosophy">Philosophy</a>
+            <a href="mailto:info@narpcapital.ca">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Smooth scroll -->
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+        var href = a.getAttribute('href');
+        if (href === '#') return;
+        var target = document.querySelector(href);
+        if (target) {
+            e.preventDefault();
+            window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+        }
+    });
+});
+</script>
+
+<!-- Scroll-driven video -->
+<script>
+(function () {
+    var video = document.querySelector('.hero-video-bg');
+    var container = document.querySelector('.hero-scroll-container');
+    if (!video || !container) return;
+
+    video.pause();
+    video.currentTime = 0;
+
+    var ticking = false;
+
+    function update() {
+        var scrolled = window.scrollY - container.offsetTop;
+        var range = container.offsetHeight - window.innerHeight;
+        if (scrolled <= 0) {
+            video.currentTime = 0;
+        } else if (scrolled >= range) {
+            video.currentTime = video.duration || 10;
+        } else {
+            video.currentTime = (scrolled / range) * (video.duration || 10);
+        }
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+
+    video.addEventListener('loadedmetadata', function () { video.currentTime = 0; });
+}());
+</script>
+
+</body>
+</html>

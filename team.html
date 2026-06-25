@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership — Narp Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200;0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:    #141414;
+            --text:   #484848;
+            --dim:    #909090;
+            --rule:   #e4e4e0;
+            --bg:     #f9f9f7;
+            --white:  #ffffff;
+            --dark:   #191920;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--ink);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ─────────────────────────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            background: var(--dark);
+            border-radius: 100px;
+            padding: 6px 6px 6px 22px;
+            white-space: nowrap;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.22);
+        }
+
+        .nav-wordmark {
+            font-family: 'Source Serif 4', serif;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            padding-right: 22px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            margin-right: 6px;
+        }
+
+        .nav-links { display: flex; align-items: center; }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.52);
+            text-decoration: none;
+            padding: 7px 14px;
+            border-radius: 100px;
+            transition: color 0.12s;
+        }
+
+        .nav-links a:hover { color: rgba(255,255,255,0.9); }
+
+        .nav-cta {
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            color: var(--dark) !important;
+            background: white;
+            padding: 7px 18px !important;
+            border-radius: 100px;
+            letter-spacing: 0.04em !important;
+        }
+
+        .nav-cta:hover { background: #ebebeb !important; color: var(--dark) !important; }
+
+        /* ── PAGE HEADER ─────────────────────────────────────────────────── */
+        .page-header {
+            padding: 160px clamp(28px, 6vw, 80px) 96px;
+            background: var(--white);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .page-header-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 480px;
+            gap: 100px;
+            align-items: end;
+        }
+
+        .page-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 300;
+            line-height: 1.06;
+            letter-spacing: -0.025em;
+            color: var(--ink);
+        }
+
+        .page-intro {
+            font-size: 15px;
+            line-height: 1.78;
+            color: var(--text);
+            padding-bottom: 6px;
+        }
+
+        /* ── TEAM ────────────────────────────────────────────────────────── */
+        .team { background: var(--bg); }
+
+        .team-member {
+            padding: 88px clamp(28px, 6vw, 80px);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .team-member-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .team-photo-wrap {
+            position: sticky;
+            top: 100px;
+        }
+
+        .team-photo {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            background: var(--rule);
+        }
+
+        .team-bio { padding-top: 4px; }
+
+        .team-name {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(28px, 3.2vw, 42px);
+            font-weight: 300;
+            letter-spacing: -0.025em;
+            color: var(--ink);
+            margin-bottom: 6px;
+            line-height: 1.08;
+        }
+
+        .team-role {
+            font-size: 12px;
+            color: var(--dim);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .team-bio p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 18px;
+            max-width: 600px;
+        }
+
+        .team-bio p:last-child { margin-bottom: 0; }
+
+        /* ── CONVICTION ──────────────────────────────────────────────────── */
+        .conviction {
+            background: var(--dark);
+            padding: 96px clamp(28px, 6vw, 80px);
+        }
+
+        .conviction-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 88px;
+            align-items: center;
+        }
+
+        .conviction-heading {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: white;
+            line-height: 1.22;
+        }
+
+        .conviction-body {
+            font-size: 15px;
+            line-height: 1.78;
+            color: rgba(255,255,255,0.46);
+        }
+
+        /* ── FOOTER ──────────────────────────────────────────────────────── */
+        footer {
+            background: #0e0e14;
+            padding: 36px clamp(28px, 6vw, 80px);
+        }
+
+        .footer-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-copy { font-size: 12px; color: rgba(255,255,255,0.22); }
+
+        .footer-back {
+            font-size: 12px;
+            color: rgba(255,255,255,0.28);
+            text-decoration: none;
+            transition: color 0.12s;
+        }
+
+        .footer-back:hover { color: rgba(255,255,255,0.65); }
+
+        /* ── RESPONSIVE ──────────────────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .page-header-inner { grid-template-columns: 1fr; gap: 40px; }
+            .team-member-inner { grid-template-columns: 1fr; gap: 44px; }
+            .team-photo-wrap { position: static; max-width: 240px; }
+            .team-photo { aspect-ratio: 1 / 1; }
+            .conviction-inner { grid-template-columns: 1fr; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="index.html" class="nav-wordmark">Narp Capital</a>
+    <div class="nav-links">
+        <a href="index.html#portfolio">Portfolio</a>
+        <a href="index.html#approach">Approach</a>
+        <a href="index.html#philosophy">Philosophy</a>
+        <a href="index.html#contact" class="nav-cta">Connect &rarr;</a>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+    <div class="page-header-inner">
+        <h1 class="page-title">The people behind the capital.</h1>
+        <p class="page-intro">Narp Capital is led by professionals with experience across real estate investment, development, and private equity. A small team with a shared conviction: build for the long term, and the returns take care of themselves.</p>
+    </div>
+</header>
+
+<!-- TEAM -->
+<section class="team">
+
+    <div class="team-member">
+        <div class="team-member-inner">
+            <div class="team-photo-wrap">
+                <img src="michael-cornish.png" alt="Michael Cornish" class="team-photo">
+            </div>
+            <div class="team-bio">
+                <h2 class="team-name">Michael Cornish</h2>
+                <div class="team-role">Founder &amp; Managing Partner</div>
+                <p>Michael founded Narp Capital with a clear mandate: build a real assets investment and development firm that takes a genuinely long-term view. Not a firm that talks about long-term investing—one that actually structures its capital, partnerships, and operations around it.</p>
+                <p>He leads investment strategy, acquisitions, and firm-wide partnerships, overseeing each project from opportunity identification through execution. Before founding Narp Capital, Michael spent over a decade working across real estate development, capital markets, and private investment.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-member">
+        <div class="team-member-inner">
+            <div class="team-photo-wrap">
+                <img src="austin-west.png" alt="Austin West" class="team-photo">
+            </div>
+            <div class="team-bio">
+                <h2 class="team-name">Austin West</h2>
+                <div class="team-role">Director, Investments</div>
+                <p>Austin leads investment analysis, acquisition underwriting, and portfolio management across the firm's development pipeline. His focus is on identifying opportunities supported by genuine market fundamentals—not trend-driven narratives.</p>
+                <p>He works closely with the firm's leadership on new investments, financial structuring, and the strategic growth of Narp Capital's portfolio across both real estate and private equity.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-member">
+        <div class="team-member-inner">
+            <div class="team-photo-wrap">
+                <img src="matthew-mcphie.png" alt="Matthew McPhie" class="team-photo">
+            </div>
+            <div class="team-bio">
+                <h2 class="team-name">Matthew McPhie</h2>
+                <div class="team-role">Director, Advisory</div>
+                <p>Matthew leads Narp Capital's advisory practice, working with landowners, investors, and development partners to evaluate opportunities, navigate complex transactions, and deliver real estate advice grounded in rigorous analysis.</p>
+                <p>His experience spans acquisitions, market analysis, and development strategy—enabling clients to make well-informed decisions at every stage of the investment process.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- CONVICTION -->
+<section class="conviction">
+    <div class="conviction-inner">
+        <h2 class="conviction-heading">Every project begins with a disciplined investment decision.</h2>
+        <p class="conviction-body">At Narp Capital, we believe thoughtful leadership, patient capital, and exceptional execution create places that endure—contributing not only to the built environment, but to the long-term strength of the communities we serve.</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <span class="footer-copy">&copy; 2026 Narp Capital. All rights reserved.</span>
+        <a href="index.html" class="footer-back">&larr; Back to Narp Capital</a>
+    </div>
+</footer>
+
+</body>
+</html>

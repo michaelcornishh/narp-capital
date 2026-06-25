@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Claude Code internals
+.claude/
+.agents/
+skills-lock.json
+
+# Separate sub-project (not part of this repo)
+stoked-bio/
+
+# Env files
+.env
+.env.*
