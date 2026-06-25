@@ -1108,12 +1108,11 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     var container = document.querySelector('.hero-scroll-container');
     if (!video || !container) return;
 
-    video.pause();
-    video.currentTime = 0;
-
+    var ready = false;
     var ticking = false;
 
     function update() {
+        if (!ready) { ticking = false; return; }
         var scrolled = window.scrollY - container.offsetTop;
         var range = container.offsetHeight - window.innerHeight;
         if (scrolled <= 0) {
@@ -1130,7 +1129,31 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
         if (!ticking) { requestAnimationFrame(update); ticking = true; }
     }, { passive: true });
 
-    video.addEventListener('loadedmetadata', function () { video.currentTime = 0; });
+    /* Fetch the video as a blob so the full file is in memory before
+       scrubbing — this makes currentTime seeking work on any CDN. */
+    fetch('hero-loop.mp4')
+        .then(function(r) { return r.blob(); })
+        .then(function(blob) {
+            var blobUrl = URL.createObjectURL(blob);
+            video.src = blobUrl;
+            video.load();
+            video.addEventListener('canplaythrough', function () {
+                video.pause();
+                video.currentTime = 0;
+                ready = true;
+                update();
+            }, { once: true });
+        })
+        .catch(function() {
+            /* Fallback: use original src and hope range requests work */
+            video.addEventListener('canplaythrough', function () {
+                video.pause();
+                video.currentTime = 0;
+                ready = true;
+                update();
+            }, { once: true });
+            video.load();
+        });
 }());
 </script>
 
