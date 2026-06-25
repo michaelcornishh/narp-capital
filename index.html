@@ -776,11 +776,10 @@
 
         .footer-links a:hover { color: rgba(255,255,255,0.65); }
 
-        /* ── RESPONSIVE ──────────────────────────────────────────────────── */
+        /* ── RESPONSIVE: tablet ──────────────────────────────────────────── */
         @media (max-width: 960px) {
             .numbers-row { grid-template-columns: 1fr 1fr; }
-            .num-cell + .num-cell:nth-child(3) { border-left: none; padding-left: 0; }
-            .about-inner { grid-template-columns: 1fr; gap: 48px; }
+            .about-inner { grid-template-columns: 1fr; gap: 40px; }
             .section-header { flex-direction: column; gap: 6px; }
             .project-row { grid-template-columns: 1fr; }
             .project-row:nth-child(even) .project-img-cell { order: 0; border-left: none; border-top: 1px solid var(--rule); }
@@ -801,11 +800,73 @@
             .contact-row { grid-template-columns: 1fr; gap: 40px; }
         }
 
-        @media (max-width: 600px) {
-            .num-cell + .num-cell { border-left: none; padding-left: 0; }
-            .num-cell:nth-child(3),
-            .num-cell:nth-child(4) { border-top: 1px solid var(--rule); padding-top: 40px; margin-top: 40px; }
-            .pe-sectors-grid { grid-template-columns: 1fr; }
+        /* ── RESPONSIVE: mobile ───────────────────────────────────────────── */
+        @media (max-width: 700px) {
+
+            /* Nav: hide middle links, just wordmark + CTA */
+            nav { padding: 5px 5px 5px 18px; }
+            .nav-links a:not(.nav-cta) { display: none; }
+
+            /* Hero */
+            .hero-content { bottom: 48px; left: 24px; right: 24px; }
+
+            /* Numbers: 2×2 grid, tighter padding */
+            .numbers { padding: 56px 24px; }
+            .numbers-row { grid-template-columns: 1fr 1fr; column-gap: 0; row-gap: 0; }
+            .num-cell { padding-right: 16px; padding-bottom: 0; }
+            .num-cell + .num-cell { padding-left: 16px; }
+            /* Third cell: new row — remove left border, add top border */
+            .num-cell:nth-child(3) {
+                border-left: none;
+                padding-left: 0;
+                padding-right: 16px;
+                border-top: 1px solid var(--rule);
+                padding-top: 44px;
+                margin-top: 44px;
+            }
+            /* Fourth cell: new row right column — keep left border, add top border */
+            .num-cell:nth-child(4) {
+                border-top: 1px solid var(--rule);
+                padding-top: 44px;
+                margin-top: 44px;
+            }
+
+            /* About */
+            .about { padding: 72px 24px; }
+            .about-inner { gap: 32px; }
+
+            /* Real estate */
+            .section-header { padding: 52px 24px 40px; }
+            .project-text-cell { padding: 32px 24px; }
+            .proj-index { font-size: 40px; }
+
+            /* Approach */
+            .approach { padding: 72px 24px; }
+            .approach-item { padding: 24px 0; }
+
+            /* PE */
+            .pe-lead { padding: 72px 24px 56px; }
+            .pe-criteria { padding: 52px 24px; }
+            .pe-sectors { padding: 52px 24px; }
+            .pe-sectors-grid { grid-template-columns: 1fr; gap: 28px; }
+            .pe-conviction { padding: 72px 24px; }
+            .pe-portfolio { padding: 52px 24px; }
+            .pe-closing { padding: 52px 24px; }
+
+            /* Philosophy */
+            .philosophy { padding: 72px 24px; }
+            .philosophy-para { padding: 22px 0; }
+
+            /* Quote */
+            .quote-band { padding: 80px 24px; }
+
+            /* Contact */
+            .contact { padding: 72px 24px; }
+            .contact-heading { margin-bottom: 40px; }
+
+            /* Footer */
+            footer { padding: 28px 24px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
         }
     </style>
 </head>

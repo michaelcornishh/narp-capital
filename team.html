@@ -238,13 +238,34 @@
 
         .footer-back:hover { color: rgba(255,255,255,0.65); }
 
-        /* ── RESPONSIVE ──────────────────────────────────────────────────── */
+        /* ── RESPONSIVE: tablet ──────────────────────────────────────────── */
         @media (max-width: 900px) {
             .page-header-inner { grid-template-columns: 1fr; gap: 40px; }
             .team-member-inner { grid-template-columns: 1fr; gap: 44px; }
             .team-photo-wrap { position: static; max-width: 240px; }
             .team-photo { aspect-ratio: 1 / 1; }
             .conviction-inner { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        /* ── RESPONSIVE: mobile ───────────────────────────────────────────── */
+        @media (max-width: 700px) {
+            /* Nav: wordmark + CTA only */
+            nav { padding: 5px 5px 5px 18px; }
+            .nav-links a:not(.nav-cta) { display: none; }
+
+            /* Page header */
+            .page-header { padding: 112px 24px 64px; }
+            .page-header-inner { gap: 24px; }
+
+            /* Team members */
+            .team-member { padding: 56px 24px; }
+            .team-photo-wrap { max-width: 200px; }
+
+            /* Conviction */
+            .conviction { padding: 72px 24px; }
+
+            /* Footer */
+            footer { padding: 28px 24px; }
         }
     </style>
 </head>
